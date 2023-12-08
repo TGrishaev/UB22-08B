@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Продажа автомобиля</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function submitForm() {
+            var brand = document.getElementById('brand').value;
+            var model = document.getElementById('model').value;
+            var year = document.getElementById('year').value;
+            var price = document.getElementById('price').value;
+            
+            if (!brand || !model || !year || !price) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            if (isNaN(year) || isNaN(price)) {
+                alert('Пожалуйста, введите корректные значения в поля "Год выпуска" и "Цена"');
+                return;
+            }
+            
+            var carData = "Марка: " + brand + ", Модель: " + model + ", Год: " + year + ", Цена: " + price + ", Состояние: " + document.getElementById('condition').value;
+            alert(carData);
+            
+            document.getElementById('carForm').reset();
+        }
+    </script>
+</head>
+<body>
+    <h1>Форма для добавления автомобиля</h1>
+    <form id="carForm">
+        <label for="brand">Марка автомобиля:</label>
+        <input type="text" id="brand" required><br>
+        
+        <label for="model">Модель автомобиля:</label>
+        <input type="text" id="model" required><br>
+        
+        <label for="year">Год выпуска:</label>
+        <input type="text" id="year" required><br>
+        
+        <label for="price">Цена автомобиля (в рублях):</label>
+        <input type="text" id="price" required><br>
+        
+        <label for="condition">Состояние автомобиля:</label>
+        <input type="text" id="condition"><br>
+        
+        <button type="button" onclick="submitForm()">Добавить автомобиль</button>
+    </form>
+</body>
+</html>
