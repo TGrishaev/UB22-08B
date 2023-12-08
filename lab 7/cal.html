@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Калькулятор</title>
+  <link rel="stylesheet" href="normalize.css">
+  <style>
+    .calculator {
+      text-align: center;
+      margin-top: 100px;
+    }
+    
+    .calculator input[type="text"] {
+      width: 200px;
+      height: 40px;
+      font-size: 20px;
+      text-align: right;
+    }
+    
+    .calculator input[type="button"] {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="result" readonly="readonly">
+    <br>
+    <input type="button" value="C" onclick="clearInput()">
+    <input type="button" value="CE" onclick="clearEntry()">
+    <input type="button" value="←" onclick="backspace()">
+    <br>
+    <input type="button" value="7" onclick="appendToInput('7')">
+    <input type="button" value="8" onclick="appendToInput('8')">
+    <input type="button" value="9" onclick="appendToInput('9')">
+    <input type="button" value="+" onclick="appendToInput('+')">
+    <br>
+    <input type="button" value="4" onclick="appendToInput('4')">
+    <input type="button" value="5" onclick="appendToInput('5')">
+    <input type="button" value="6" onclick="appendToInput('6')">
+    <input type="button" value="-" onclick="appendToInput('-')">
+    <br>
+    <input type="button" value="1" onclick="appendToInput('1')">
+    <input type="button" value="2" onclick="appendToInput('2')">
+    <input type="button" value="3" onclick="appendToInput('3')">
+    <input type="button" value="*" onclick="appendToInput('*')">
+    <br>
+    <input type="button" value="0" onclick="appendToInput('0')">
+    <input type="button" value="." onclick="appendToInput('.')">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="/" onclick="appendToInput('/')">
+    <br>
+    <input type="button" value="+/-" onclick="changeSign()">
+    <input type="button" value="1/x" onclick="reciprocal()">
+    <input type="button" value="sqrt" onclick="squareRoot()">
+    <input type="button" value="%" onclick="percent()">
+  </div>
+
+  <script>
+    function clearInput() {
+      document.getElementById('result').value = '';
+    }
+    
+    function clearEntry() {
+      var input = document.getElementById('result').value;
+      document.getElementById('result').value = input.substring(0, input.length - 1);
+    }
+    
+    function backspace() {
+      var input = document.getElementById('result').value;
+      document.getElementById('result').value = input.substring(0, input.length - 1);
+    }
+    
+    function appendToInput(value) {
+      document.getElementById('result').value += value;
+    }
+    
+    function calculate() {
+      var input = document.getElementById('result').value;
+      var result = eval(input);
+      document.getElementById('result').value = result;
+    }
+    
+    function changeSign() {
+      var input = document.getElementById('result').value;
+      if (input.substring(0, 1) === '-') {
+        document.getElementById('result').value = input.substring(1);
+      } else {
+        document.getElementById('result').value = '-' + input;
+      }
+    }
+    
+    function reciprocal() {
+      var input = document.getElementById('result').value;
+      var result = 1 / parseFloat(input);
+      document.getElementById('result').value = result;
+    }
+    
+    function squareRoot() {
+      var input = document.getElementById('result').value;
+      var result = Math.sqrt(parseFloat(input));
+      document.getElementById('result').value = result;
+    }
+    
+    function percent() {
+      var input = document.getElementById('result').value;
+      var result = parseFloat(input) / 100;
+      document.getElementById('result').value = result;
+    }
+  </script>
+</body>
+</html>
