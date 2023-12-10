@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="normalize.css"/>
+    <link rel="stylesheet" href="style.css"/>
+<title>JЗадания</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .result { margin-top: 10px; }
+</style>
+</head>
+<body>
+  <!-- Задание 1 -->
+  <h3>Задание 1</h3>
+  <input type="number" id="mushroomCount" placeholder="Введите количество грибов">
+  <button onclick="displayMushrooms()">Показать</button>
+  <div class="result" id="result1"></div>
+
+  <!-- Задание 2 -->
+  <h3>Задание 2</h3>
+  <input type="text" id="arrayInput" placeholder="Введите массив чисел, разделенных запятой">
+<button onclick="generateRandomArray()">Сгенерировать случайный массив</button>
+<div>Сгенерированный массив: <span id="randomArray"></span></div>
+<button onclick="processArray()">Обработать массив</button>
+<div class="result" id="result2"></div>
+
+
+
+
+  <!-- Задание 4 -->
+  <h3>Задание 4</h3>
+  <input type="text" id="wordInput" placeholder="Введите слово">
+  <button onclick="checkPalindrome()">Проверить</button>
+  <div class="result" id="result4"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
