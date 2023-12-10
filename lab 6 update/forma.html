@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продажа автомобиля</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Форма объявления о продаже автомобиля</h2>
+    <form id="carForm">
+        <div>
+            <label for="carBrand">Марка автомобиля:</label>
+            <input type="text" id="carBrand" required>
+        </div>
+        <div>
+            <label for="carModel">Модель автомобиля:</label>
+            <input type="text" id="carModel" required>
+        </div>
+        <div>
+            <label for="carYear">Год выпуска:</label>
+            <input type="number" id="carYear" required>
+        </div>
+        <div>
+            <label for="carPrice">Цена автомобиля (в рублях):</label>
+            <input type="number" id="carPrice" required>
+        </div>
+        <div>
+            <label for="carCondition">Состояние автомобиля:</label>
+            <select id="carCondition" required>
+                <option value="Отличное">Отличное</option>
+                <option value="Хорошее">Хорошее</option>
+                <option value="Удовлетворительное">Удовлетворительное</option>
+            </select>
+        </div>
+        <div>
+            <label for="carDescription">Описание автомобиля:</label><br>
+            <textarea id="carDescription" rows="4" cols="50" required></textarea>
+        </div>
+        <div>
+            <label for="carPhoto">Добавить фотографии автомобиля:</label>
+            <input type="file" id="carPhoto" accept="image/*" multiple>
+        </div>
+        <button type="submit">Опубликовать объявление</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('carForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const carBrand = document.getElementById('carBrand').value;
+            const carModel = document.getElementById('carModel').value;
+            const carYear = parseInt(document.getElementById('carYear').value);
+            const carPrice = parseInt(document.getElementById('carPrice').value);
+            const carCondition = document.getElementById('carCondition').value;
+            const carDescription = document.getElementById('carDescription').value;
+            if (carBrand && carModel && carYear && carPrice && carCondition && carDescription) {
+                if (carYear <= 1900 || carYear > new Date().getFullYear()) {
+                    alert('Пожалуйста, введите корректный год выпуска автомобиля.');
+                } else {
+                    alert(`Марка: ${carBrand}\nМодель: ${carModel}\nГод: ${carYear}\nЦена: ${carPrice}\nСостояние: ${carCondition}\nОписание: ${carDescription}`);
+                    form.reset();
+                }
+            } else {
+                alert('Пожалуйста, заполните все обязательные поля формы.');
+            }
+        });
+    </script>
+</body>
+</html>
