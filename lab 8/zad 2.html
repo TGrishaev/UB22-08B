@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Календарь на месяц</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .weekend {
+            background-color: #f2f2f2;
+        }
+        .holiday {
+            background-color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Календарь на месяц</h1>
+    <label for="month">Месяц:</label>
+    <select id="month">
+        <option value="1">Январь</option>
+        <option value="2">Февраль</option>
+        <option value="3">Март</option>
+        <option value="4">Апрель</option>
+        <option value="5">Май</option>
+        <option value="6">Июнь</option>
+        <option value="7">Июль</option>
+        <option value="8">Август</option>
+        <option value="9">Сентябрь</option>
+        <option value="10">Октябрь</option>
+        <option value="11">Ноябрь</option>
+        <option value="12">Декабрь</option>
+    </select>
+    <label for="year">Год:</label>
+    <input type="number" id="year" min="1900" max="2099" value="2022">
+    <button onclick="displayCalendar()">Показать</button>
+
+    <table id="calendar"></table>
+
+    <script>
+        function displayCalendar() {
+            const month = parseInt(document.getElementById('month').value);
+            const year = parseInt(document.getElementById('year').value);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const firstDay = new Date(year, month - 1, 1).getDay();
+
+            const table = document.getElementById('calendar');
+            table.innerHTML = '';
+
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>';
+            table.appendChild(headerRow);
+
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('tr');
+
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        const cell = document.createElement('td');
+                        row.appendChild(cell);
+                    } else if (date > daysInMonth) {
+                        break;
+                    } else {
+                        const cell = document.createElement('td');
+                        cell.textContent = date;
+                        row.appendChild(cell);
+
+                        if (j === 5 || j === 6) {
+                            cell.classList.add('weekend');
+                        }
+
+                        if (date === 1 && month === 1) {
+                            cell.classList.add('holiday');
+                        }
+                        if (date === 23 && month === 2) {
+                            cell.classList.add('holiday');
+                        }
+                        if (date === 14 && month === 2) {
+                            cell.classList.add('holiday');
+                        }
+
+                        date++;
+                    }
+                }
+
+                table.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
